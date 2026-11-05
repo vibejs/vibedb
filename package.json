@@ -1,0 +1,101 @@
+{
+  "name": "@usevibejs/db",
+  "version": "0.1.0",
+  "description": "Drizzle module for vibe.js. Migrate on bootstrap, close on shutdown.",
+  "keywords": [
+    "typescript",
+    "vibejs"
+  ],
+  "homepage": "https://github.com/vibejs/vibedb#readme",
+  "bugs": {
+    "url": "https://github.com/vibejs/vibedb/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vibejs/vibedb.git"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./contract": {
+      "types": "./dist/contract.d.ts",
+      "import": "./dist/contract.js",
+      "default": "./dist/contract.js"
+    },
+    "./pglite": {
+      "types": "./dist/pglite.d.ts",
+      "import": "./dist/pglite.js",
+      "default": "./dist/pglite.js"
+    },
+    "./postgres": {
+      "types": "./dist/postgres.d.ts",
+      "import": "./dist/postgres.js",
+      "default": "./dist/postgres.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit && node scripts/check-codes.ts",
+    "lint": "oxlint --deny-warnings",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "check": "pnpm fmt:check && pnpm lint && pnpm typecheck && pnpm test:coverage",
+    "precheck": "pnpm build",
+    "version-packages": "changeset version && pnpm install --lockfile-only"
+  },
+  "dependencies": {
+    "drizzle-orm": "catalog:",
+    "valibot": "catalog:"
+  },
+  "devDependencies": {
+    "@changesets/cli": "catalog:",
+    "@electric-sql/pglite": "catalog:",
+    "@types/node": "catalog:",
+    "@types/pg": "catalog:",
+    "@usevibejs/contract": "catalog:",
+    "@usevibejs/server": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "pg": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "peerDependencies": {
+    "@electric-sql/pglite": "^0.5.0",
+    "@usevibejs/contract": "^0.1.0",
+    "@usevibejs/server": "^0.1.0",
+    "pg": "^8.23.0"
+  },
+  "peerDependenciesMeta": {
+    "@electric-sql/pglite": {
+      "optional": true
+    },
+    "pg": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": "^24.15.0 || >=26"
+  },
+  "packageManager": "pnpm@12.14.0"
+}
